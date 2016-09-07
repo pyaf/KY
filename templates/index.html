@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% block title%}
+        <title>Technex'17</title>
+{% endblock %}
+
+
+      {%block intial_content%}
+      <div class="jumbotron text-center">
+      <h1>  Welcome to KY'17</h1>
+      </div>
+      {%endblock%}
+      {% block auth %}
+
+      <div class="text-center">
+        <h2>hello {{name}} </h2>
+          <h2> Let's move on to your KY Dashboard</h2>
+        <a class="btn btn-default btn-lg" href="{% url 'kyusers:dashboard' %}">Dashboard</a>
+      </div>
+      {% endblock %}
+                    {% block unauth %}
+                    <div class="text-center">
+                      <a class="btn btn-primary btn-lg" href="{% url 'kyusers:login' %}">Log In</a>
+                      <a class="btn btn-default " href="{% url 'kyusers:register' %}">Sign Up</a>
+                    </div>
+                    {% endblock %}
+
+        {% block content %}
+
+{% endblock%}
