@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.admin import UserAdmin
 
 
-from .models import KYProfile
+from KYusers.models import KYProfile, CAProfile,College
 
 class KYprofileInline(admin.StackedInline):
     model = KYProfile
@@ -27,9 +27,12 @@ class UserAdmin(UserAdmin):
     college.short_description = 'College'
     mobile_number.short_description = 'Mobile No.'
 
-    inlines = (KYprofileInline, )
+
     list_display = ('email',name, college, mobile_number)
 
 admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.register(User,UserAdmin)
+admin.site.register(CAProfile)
+admin.site.register(KYProfile)
+admin.site.register(College)

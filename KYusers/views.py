@@ -27,6 +27,7 @@ def RegisterView(request):
                 allready_a_user = User.objects.get(username=email)
             except:
                 allready_a_user = None
+
             if allready_a_user is None:
                 user = User.objects.create_user(username=email, email=email)
                 user.first_name = post['first_name']
@@ -57,7 +58,6 @@ def LoginView(request):
     if request.method == "POST":
         post = request.POST
         form = LoginForm(post)
-
         if form.is_valid:
             email = post['email']
             password = post['password']

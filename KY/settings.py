@@ -19,6 +19,7 @@ DEBUG = True
 INSTALLED_APPS = [
 
     'KYusers',
+    'events',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
