@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 year_choices = [
-        (None, 'year'),
+        (None, 'Year'),
         (1, 'First'),
         (2, 'Second'),
         (3, 'Third'),
@@ -11,27 +11,34 @@ year_choices = [
         (5,'Fifth'),
     ]
 sex_choices = [
+    (None,'Sex'),
     ('Male', 'Male'),
     ('Female', 'Female'),
     ('Other', 'Other')
 ]
 
 class College(models.Model):
-    collegeId = models.AutoField(primary_key=True)
+    collegeId = models.CharField(max_length=20,blank=True)
     collegeName = models.CharField(max_length=250)
 
+    def save(self, *args, **kwargs):
+        super(College, self).save(*args,**kwargs)
+        self.collegeId = '%03d' %(self.id)
+        super(College, self).save(*args, **kwargs)
+
     def __unicode__(self):
-        return "%s- %s" %(self.collegeName, self.collegeId)
+        return self.collegeName
 
 
 class KYProfile(models.Model):
     user = models.OneToOneField(User)
-    age = models.PositiveSmallIntegerField(null=True)
+    # age = models.PositiveSmallIntegerField(null=True)
     sex = models.CharField(max_length=10, choices=sex_choices)
     year = models.PositiveSmallIntegerField(choices=year_choices)
     mobile_number = models.BigIntegerField()
     college = models.OneToOneField(College)
     # referalCode = models.Field() #should be caId of some CA.
+    is_ca = models.BooleanField(default=False)
     kyId = models.CharField(max_length=20,blank=True)
 
     def save(self, *args, **kwargs):

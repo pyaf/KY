@@ -30,9 +30,12 @@ class UserAdmin(UserAdmin):
 
     list_display = ('email',name, college, mobile_number)
 
+class CollegeAdmin(admin.ModelAdmin):
+    list_display = ('collegeName', 'collegeId')
+
 admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.register(User,UserAdmin)
 admin.site.register(CAProfile)
 admin.site.register(KYProfile)
-admin.site.register(College)
+admin.site.register(College,CollegeAdmin)

@@ -14,6 +14,8 @@ urlpatterns = [
 
 	url(r'^register/$', RegisterView, name='register'),
 
+	url(r'^form/$', FormView, name='form'),
+
 	url(r'^dashboard/$', DashboardView, name='dashboard'),
 
 	url(r'^logout/$', LogoutView, name='logout'),
