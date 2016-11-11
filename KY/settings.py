@@ -12,12 +12,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "aq_g^m4__1@(ht)0&2scpzi_kvzt*0qun5i9%2&7sa7*(byaa6"
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
-
-# Application definition
-
+# if 'DEBUG' in os.environ:
+#     if (os.environ['DEBUG']=='FALSE'):
+#         DEBUG = False
+#     else:
+#         DEBUG = True
 INSTALLED_APPS = [
-
+    'etc',
     'KYusers',
     'events',
     'django.contrib.admin',
@@ -65,6 +68,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'KY.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+  'KYusers.emailBackend.LoginUsingEmailAsUsernameBackend',
+  'django.contrib.auth.backends.ModelBackend',
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -119,3 +126,6 @@ STATIC_URL = '/static/'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = "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"
