@@ -1,3 +1,0 @@
-Merchant ID	5666903
-Merchant Key	H38ofv1L
-Merchant Salt	dVyxP1ckI3
